@@ -1,0 +1,17 @@
+{
+  "_nota": "Ajustes predefinidos. Claude los ajusta contigo en la instalación; también puedes editarlos a mano.",
+  "idioma": "spanish",
+  "formato": { "ancho": 1080, "alto": 1920, "fps": 30, "proporcion": "9:16" },
+  "cortes": {
+    "ruido_db": -32,
+    "silencio_min": 0.22,
+    "antes": 0.06,
+    "despues": 0.12,
+    "_nota": "ruido_db: qué tan bajo debe estar el sonido para contar como silencio. silencio_min: pausa mínima (segundos) que se corta. antes/despues: aire que se deja alrededor de cada frase."
+  },
+  "audio": { "musica_volumen": 0.15, "sonidos_volumen": 0.8 },
+  "sonidos": {
+    "cantidad": "normal",
+    "_nota": "poca, normal o mucha: cuántos efectos de sonido poner."
+  }
+}

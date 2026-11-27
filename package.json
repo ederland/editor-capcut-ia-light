@@ -1,0 +1,19 @@
+{
+  "name": "editor-capcut-ia-light",
+  "version": "0.1.0",
+  "description": "Limpia tus videos con Claude Code y recibe un borrador de CapCut PC: cortes, música y efectos de sonido.",
+  "author": "Ederland (https://eder-land.com)",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "preparar": "node scripts/preparar.mjs"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "4.3.1",
+    "capcut-cli": "0.35.0"
+  }
+}

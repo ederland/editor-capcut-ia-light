@@ -1,0 +1,6 @@
+Recursos
+
+- musica/ — canciones que puedes usar en tus videos.
+- sonidos/ — efectos de sonido. Se crean unos básicos al instalar; si pones aquí tap, swish, woosh, pop o bien con tu propio audio, se usan los tuyos.
+
+Esta carpeta no se sube a GitHub.

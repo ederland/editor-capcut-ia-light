@@ -1,0 +1,12 @@
+node_modules/
+.modelos/
+trabajo/
+
+# Tu material no se sube: solo quedan las carpetas con su LEEME
+videos-crudos/*
+recursos/*/*
+!**/LEEME.txt
+!**/.gitkeep
+
+*.bak
+tmp-*.json

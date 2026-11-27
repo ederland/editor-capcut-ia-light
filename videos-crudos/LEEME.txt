@@ -1,0 +1,6 @@
+Videos crudos
+
+Pega aquí tus videos tal cual los grabaste (.mp4 o .mov).
+Luego dile a Claude: "edítame el video nombre-del-archivo".
+
+Esta carpeta no se sube a GitHub.

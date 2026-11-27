@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Editor IA Light para CapCut — Instrucciones</title>
+<style>
+  :root { --fondo:#f6f7f9; --tarjeta:#ffffff; --texto:#14161a; --suave:#5b6472; --linea:#dfe3ea; --principal:#2563eb; --acento:#b58900; --codigo:#eef1f6; }
+  @media (prefers-color-scheme: dark) { :root { --fondo:#0f1115; --tarjeta:#1c2028; --texto:#f2f4f8; --suave:#9aa3b2; --linea:#2c323d; --principal:#6b9bff; --acento:#ffd60a; --codigo:#262b35; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--fondo); color:var(--texto); font:17px/1.6 "Segoe UI", -apple-system, "Helvetica Neue", Arial, sans-serif; }
+  main { max-width:820px; margin:0 auto; padding:40px 16px 80px; }
+  h1 { font-size:2rem; line-height:1.2; margin:0 0 8px; }
+  h2 { font-size:1.35rem; margin:44px 0 12px; }
+  h3 { font-size:1.05rem; margin:0 0 8px; }
+  p { margin:0 0 14px; } .suave { color:var(--suave); }
+  a { color:var(--principal); }
+  .tarjeta { background:var(--tarjeta); border:1px solid var(--linea); border-radius:14px; padding:20px 22px; margin:0 0 16px; }
+  .paso { display:flex; gap:16px; }
+  .num { flex:none; width:36px; height:36px; border-radius:50%; background:var(--principal); color:#fff; font-weight:700; display:flex; align-items:center; justify-content:center; }
+  .paso > div:last-child { min-width:0; flex:1; }
+  .copiar { background:var(--codigo); border-radius:10px; padding:14px 16px; margin:10px 0; font-family:Consolas, Menlo, monospace; font-size:.93rem; white-space:pre-wrap; word-break:break-word; }
+  code { background:var(--codigo); padding:2px 6px; border-radius:6px; font-family:Consolas, Menlo, monospace; font-size:.92em; }
+  button { font:inherit; cursor:pointer; border-radius:10px; border:1px solid var(--linea); background:var(--tarjeta); color:var(--texto); padding:8px 16px; }
+  button.activo { background:var(--principal); border-color:var(--principal); color:#fff; }
+  .sistemas { display:flex; gap:8px; margin:0 0 16px; }
+  .mac, .win { display:none; } body.es-win .win { display:block; } body.es-mac .mac { display:block; }
+  ul, ol { margin:0 0 14px; padding-left:22px; } li { margin:4px 0; }
+  .tabla { overflow-x:auto; } table { border-collapse:collapse; width:100%; } th, td { text-align:left; padding:10px 12px; border-bottom:1px solid var(--linea); vertical-align:top; } th { color:var(--suave); font-weight:600; }
+  .aviso { border-left:4px solid var(--acento); }
+  footer { margin-top:48px; color:var(--suave); font-size:.92rem; }
+</style>
+</head>
+<body class="es-win">
+<main>
+  <h1>Editor IA Light para CapCut</h1>
+  <p class="suave">Dale a Claude tu video crudo y recibe un proyecto de CapCut ya limpio: sin silencios ni tomas repetidas, con música y efectos de sonido. Tú le pones lo demás.</p>
+  <p class="suave">Todo corre en tu computador. Sin cuentas extra, sin subir tus videos a ningún lado.</p>
+
+  <h2>Elige tu computador</h2>
+  <div class="sistemas">
+    <button id="b-win" class="activo" onclick="elegir('win')">Windows</button>
+    <button id="b-mac" onclick="elegir('mac')">Mac</button>
+  </div>
+  <div class="tarjeta aviso mac"><strong>Nota para Mac:</strong> el editor está probado en Windows. En Mac debería funcionar igual, pero todavía no está comprobado. Si algo falla, cuéntaselo a Claude: suele poder resolverlo.</div>
+
+  <h2>Instalación</h2>
+  <p>No necesitas saber programar. Claude instala todo por ti; tú solo respondes preguntas. Tarda unos 5 minutos.</p>
+
+  <div class="tarjeta paso"><div class="num">1</div><div>
+    <h3>Ten estas dos aplicaciones</h3>
+    <ul>
+      <li><a href="https://claude.com/claude-code">Claude Code</a>, la aplicación de escritorio.</li>
+      <li><a href="https://www.capcut.com/">CapCut para computador</a>. Ábrelo una vez y crea cualquier proyecto, para que exista su carpeta de proyectos.</li>
+    </ul>
+  </div></div>
+
+  <div class="tarjeta paso"><div class="num">2</div><div>
+    <h3>Pega este mensaje en Claude Code</h3>
+    <div class="copiar" id="msg">Instálame este editor de video: https://github.com/ederland/editor-capcut-ia-light
+Sigue las instrucciones del archivo INSTALAR.md y guíame paso a paso.</div>
+    <button onclick="navigator.clipboard.writeText(document.getElementById('msg').textContent).then(()=>{this.textContent='Copiado'})">Copiar mensaje</button>
+  </div></div>
+
+  <div class="tarjeta paso"><div class="num">3</div><div>
+    <h3>Responde lo que Claude te pregunte</h3>
+    <ol>
+      <li><strong>Dónde guardarlo.</strong>
+        <span class="win">Una buena opción: <code>Documentos\editor-capcut</code>.</span>
+        <span class="mac">Una buena opción: <code>Documentos/editor-capcut</code>.</span>
+      </li>
+      <li><strong>Permisos.</strong> Claude te pedirá permiso para ejecutar comandos. Acéptalos: son los de la instalación.</li>
+      <li><strong>Programas que falten.</strong> Si no los tienes, Claude te ayuda a instalarlos:
+        <div class="win">
+          <ul>
+            <li><strong>Git</strong>: <code>winget install Git.Git</code></li>
+            <li><strong>Node.js</strong>: <code>winget install OpenJS.NodeJS.LTS</code></li>
+            <li><strong>ffmpeg</strong>: <code>winget install Gyan.FFmpeg</code></li>
+          </ul>
+          <p class="suave">Después de instalarlos, cierra y vuelve a abrir Claude Code para que los reconozca.</p>
+        </div>
+        <div class="mac">
+          <ul>
+            <li>Primero <a href="https://brew.sh">Homebrew</a>, si no lo tienes.</li>
+            <li>Luego: <code>brew install git node ffmpeg</code></li>
+          </ul>
+          <p class="suave">La primera vez, tu Mac puede pedirte instalar las "herramientas de línea de comandos". Acepta.</p>
+        </div>
+      </li>
+      <li><strong>Tus dos carpetas.</strong> Claude te las muestra y te pide pegar tu primer video.</li>
+      <li><strong>Tus ajustes.</strong> Si tus videos son verticales u horizontales, el idioma en que hablas, qué tan pegados quieres los cortes y cuántos efectos de sonido.</li>
+    </ol>
+  </div></div>
+
+  <div class="tarjeta paso"><div class="num">4</div><div>
+    <h3>Edita tu primer video</h3>
+    <p>Dile a Claude: <code>edítame el video que acabo de pegar</code></p>
+    <p class="suave">La primera vez descarga un modelo de voz de unos 250 MB. Pasa una sola vez.</p>
+  </div></div>
+
+  <h2>Tus dos carpetas</h2>
+  <p>Están dentro de la carpeta donde guardaste el editor.</p>
+  <div class="tarjeta tabla"><table>
+    <tr><th>Carpeta</th><th>Qué pones ahí</th></tr>
+    <tr><td><code>videos-crudos</code></td><td>Tus videos tal cual los grabaste.</td></tr>
+    <tr><td><code>recursos</code></td><td>Tu música y, si tienes, tus propios efectos de sonido.</td></tr>
+  </table></div>
+
+  <h2>Cómo se usa cada día</h2>
+  <div class="tarjeta">
+    <ol>
+      <li>Pega tu video en <code>videos-crudos</code>.</li>
+      <li>Abre Claude Code <strong>en la carpeta del editor</strong> y dile: <code>edítame el video nombre-del-video</code></li>
+      <li>Claude te cuenta el plan. Cuando te lo pida, <strong>cierra CapCut</strong>
+        <span class="win">(ciérralo con la X y revisa que no quede abierto en la barra de tareas).</span>
+        <span class="mac">(con <code>Cmd + Q</code>; cerrar la ventana no basta).</span>
+      </li>
+      <li>Abre CapCut: tu video aparece en la lista de proyectos con el nombre que te dijo Claude.</li>
+      <li>Revisa y termina los detalles a tu gusto.</li>
+    </ol>
+  </div>
+
+  <h2>Otras cosas que puedes pedir</h2>
+  <div class="tarjeta"><ul>
+    <li>"Corta menos pegado" o "deja más aire entre frases".</li>
+    <li>"Pon menos efectos de sonido" o "súbele a la música".</li>
+    <li>"Déjalo en 60 segundos" — Claude te propone qué quitar.</li>
+    <li>"Usa esta canción" — con el nombre de un archivo de tu carpeta de música.</li>
+  </ul></div>
+
+  <h2>Si algo no sale bien</h2>
+  <div class="tarjeta tabla"><table>
+    <tr><th>Qué pasa</th><th>Qué hacer</th></tr>
+    <tr><td>Claude dice que CapCut está abierto</td><td>Ciérralo por completo y dile "ya lo cerré".</td></tr>
+    <tr><td>El proyecto no aparece en CapCut</td><td>Cierra y vuelve a abrir CapCut. Si sigue sin aparecer, díselo a Claude.</td></tr>
+    <tr><td>CapCut dice que el proyecto no es válido</td><td>Suele pasar con CapCut 10 o superior. El editor está probado en la versión 9.9.</td></tr>
+    <tr><td>Un video o sonido sale como "archivo perdido"</td><td>No muevas ni cambies el nombre de la carpeta del editor después de crear un proyecto.</td></tr>
+    <tr><td>Un corte muerde una palabra</td><td>Dile a Claude en qué segundo pasa y pídele "corta menos pegado"; o estira ese clip a mano en CapCut.</td></tr>
+    <tr><td>Falla la primera transcripción</td><td>Suele ser la descarga del modelo. Pídele a Claude que lo intente otra vez.</td></tr>
+  </table></div>
+
+  <footer>
+    <p>Creado por <a href="https://eder-land.com">Ederland</a>. Los créditos de las herramientas que usa están en el archivo README.md.</p>
+    <p>Proyecto independiente, sin relación con CapCut, ByteDance ni Anthropic.</p>
+  </footer>
+</main>
+<script>
+  function elegir(s) { document.body.className = 'es-' + s; document.getElementById('b-win').className = s === 'win' ? 'activo' : ''; document.getElementById('b-mac').className = s === 'mac' ? 'activo' : ''; }
+  if (/Mac/i.test(navigator.platform || navigator.userAgent)) elegir('mac');
+</script>
+</body>
+</html>
